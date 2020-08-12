@@ -1,0 +1,55 @@
+--Cria o Banco de dados
+CREATE DATABASE Optus;
+USE Optus;
+
+
+
+CREATE TABLE Estilo(
+	IdEstilo INT IDENTITY PRIMARY KEY NOT NULL,
+	Nome VARCHAR(100) NOT NULL,	
+);
+
+--Cria a tabela de Artista
+CREATE TABLE Artista(
+	IdArtista INT PRIMARY KEY IDENTITY NOT NULL,
+	Nome VARCHAR(100) NOT NULL,
+	
+--FK
+	IdEstilo INT FOREIGN KEY REFERENCES Estilo(IdEstilo),
+);
+
+
+
+
+CREATE TABLE Album(
+	IdAlbum INT IDENTITY PRIMARY KEY NOT NULL,
+	Nome VARCHAR(100) NOT NULL,
+	Localizacao VARCHAR(50),
+	Minutos VARCHAR(50),
+	Ativo VARCHAR(50),
+--FK
+	IdArtista INT FOREIGN KEY REFERENCES Artista(IdArtista)
+);
+
+
+
+CREATE TABLE EstiloAlbum(
+	IdEstiloAlbum INT IDENTITY PRIMARY KEY NOT NULL,
+	
+--FK
+	IdAlbum INT FOREIGN KEY REFERENCES Album(IdAlbum),
+	IdEstilo INT FOREIGN KEY REFERENCES Estilo(IdEstilo),
+
+);
+
+
+
+
+CREATE TABLE Usuario(
+	IdUsuario INT IDENTITY PRIMARY KEY NOT NULL,
+	Nome VARCHAR(100) NOT NULL,
+	Email VARCHAR(100) NOT NULL,
+	Senha VARCHAR(20) NOT NULL,
+	Permissao VARCHAR(20)NOT NULL,
+
+);
